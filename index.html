@@ -14,8 +14,7 @@
   .nav button { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 4px 12px; border-radius: 20px; }
   .nav button:hover { background: rgba(255,255,255,0.15); }
   .nav .slide-num { font-size: 13px; color: rgba(255,255,255,0.6); min-width: 60px; text-align: center; }
-  .pdf-btn { position: fixed; bottom: 32px; right: 32px; z-index: 100; background: #4fc3f7; border: none; color: #0f1b2d; font-size: 14px; font-weight: 700; padding: 12px 24px; border-radius: 50px; cursor: pointer; }
-  .pdf-btn:hover { background: #81d4fa; }
+
   .bg-navy { background: linear-gradient(135deg, #0f1b2d 0%, #1a2e4a 100%); }
   .bg-blue { background: linear-gradient(135deg, #0d2137 0%, #0f3d6e 100%); }
   .bg-teal { background: linear-gradient(135deg, #052e20 0%, #0a5240 100%); }
@@ -49,6 +48,8 @@
   .slide-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #4fc3f7, #81d4fa); transition: width 0.3s; z-index: 200; }
   .final-word { font-size: 48px; font-weight: 700; line-height: 1.4; text-align: center; }
   .circle-deco { width: 300px; height: 300px; border-radius: 50%; border: 1px solid rgba(79,195,247,0.2); position: absolute; }
+  .footer-logos { position: fixed; bottom: 72px; right: 20px; display: flex; align-items: center; gap: 16px; z-index: 99; }
+  .footer-logos img { height: 32px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.85; }
   @media print {
     .nav, .pdf-btn, .slide-progress { display: none !important; }
     .slide { display: flex !important; page-break-after: always; min-height: 100vh; }
@@ -375,18 +376,24 @@
 
 </div>
 
+<div class="footer-logos">
+  <img src="communion120_40.png" alt="バレーナコミュニオン">
+  <img src="OC_logo.png" alt="Office Concierge">
+</div>
+
 <div class="nav">
   <button onclick="go(-1)">&#8592;</button>
   <span class="slide-num" id="snum">1 / 10</span>
   <button onclick="go(1)">&#8594;</button>
 </div>
 
-<button class="pdf-btn" onclick="printPDF()">PDF ダウンロード</button>
+
 
 <script>
   var cur = 0;
   var slides = document.querySelectorAll('.slide');
   var total = slides.length;
+  document.getElementById('snum').textContent = '1 / ' + total;
   function go(d) {
     slides[cur].classList.remove('active');
     cur = (cur + d + total) % total;
